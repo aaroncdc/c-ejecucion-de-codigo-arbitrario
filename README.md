@@ -11,7 +11,7 @@ Esto quiere decir que cualquier aplicación ejecutada en un entorno de 32 bits p
 
 Para evitar todo ésto de una manera eficiente, los fabricantes de procesadores incorporaron una extensión denominada [PAE (Physical Address Extension)](https://en.wikipedia.org/wiki/Physical_Address_Extension), incorporada en los procesadores desde el Intel Pentium Pro y los procesadores AMD Athlon de mediados de los 90. En los procesadores de 64 bits, se incorpora además una extensión de las tablas de paginación, que añade la posibilidad de usar el primer bit de cualquier entrada de la tabla como un bit de "no ejecución" ([NX](https://en.wikipedia.org/wiki/NX_bit)).
 
-Cuando el bit NX de cualquier página de memoria está activado, no se podran realizar llamadas o ejecutar código desde éstas páginas de memoria, protegiendolas frente a ataques de inyección de código arbitrario.
+Cuando el bit NX de cualquier página de memoria está activado, no se podran realizar llamadas o ejecutar código desde éstas páginas de memoria, protegiendolas frente a ataques de inyección de código arbitrario. Además al arrancar el ejecutable, se copian los datos de la sección .data del ejecutable en una región diferente de la memoria de la sección .text, protegida contra escritura y ejecución. De modo que tampoco es posible inyectar ni ejecutar código en éstas regiones.
 
 Los ejemplos contenidos en éste proyecto no demuestran ningún tipo de ataque, pero demuestran cómo se ejecuta código arbitrario en ambos tipos de sistemas, cómo se puede cambiar la protección de la memoria en Windows (64-bits) mediante la API de Windows, y cómo protege el bit NX las páginas de memoria contra la ejecución de código arbitrario.
 
